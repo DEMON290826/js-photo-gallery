@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Photo Gallery</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f6f7fb;
+      color: #1b1f29;
+      margin: 0;
+      padding: 32px 16px 64px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      margin: 0 0 8px;
+    }
+    .intro {
+      text-align: center;
+      margin: 0 auto 28px;
+      max-width: 640px;
+      color: #4d5566;
+      line-height: 1.5;
+    }
+    #image {
+      max-width: 900px;
+      min-height: 320px;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+      border: 3px dashed #c3cad9;
+      border-radius: 16px;
+      background-color: #ffffff;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      color: #4d5566;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: background-color 0.2s ease;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 960px;
+    }
+    .gallery img {
+      width: 170px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid transparent;
+      background: #ffffff;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .gallery img:hover,
+    .gallery img:focus {
+      transform: translateY(-4px);
+      border-color: #2f6feb;
+      outline: none;
+    }
+    .gallery img:focus-visible {
+      box-shadow: 0 0 0 4px rgba(47, 111, 235, 0.35);
+    }
+    .hint {
+      text-align: center;
+      margin-top: 24px;
+      color: #6b7386;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Photo Gallery</h1>
+  <p class="intro">
+    Move your mouse over a picture (or tab to it with the keyboard) to preview it above.
+  </p>
+
+  <div id="image">Hover over an image below to display here.</div>
+
+  <ul class="gallery">
+    <li>
+      <img src="https://picsum.photos/id/1015/400/300" alt="River running through a green mountain valley"
+        tabindex="0" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()">
+    </li>
+    <li>
+      <img src="https://picsum.photos/id/1025/400/300" alt="Small dog wrapped in a blanket"
+        tabindex="0" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()">
+    </li>
+    <li>
+      <img src="https://picsum.photos/id/1039/400/300" alt="Waterfall falling into a rocky pool"
+        tabindex="0" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()">
+    </li>
+    <li>
+      <img src="https://picsum.photos/id/1043/400/300" alt="City skyline seen from a height"
+        tabindex="0" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()">
+    </li>
+    <li>
+      <img src="https://picsum.photos/id/1069/400/300" alt="White yacht on a blue sea"
+        tabindex="0" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()">
+    </li>
+  </ul>
+
+  <p class="hint">Images load from picsum.photos and need an internet connection.</p>
+
+  <script>
+    function upDate(previewPic) {
+      var imageDiv = document.getElementById("image");
+      imageDiv.innerHTML = previewPic.alt;
+      imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+    }
+
+    function undo() {
+      var imageDiv = document.getElementById("image");
+      imageDiv.innerHTML = "Hover over an image below to display here.";
+      imageDiv.style.backgroundImage = "url('')";
+    }
+  </script>
+</body>
+</html>
